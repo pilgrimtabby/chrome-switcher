@@ -1,0 +1,31 @@
+[project]
+name = "chrome-switcher"
+dependencies = [ 
+]
+version = "0.0.1"
+authors = [
+  { name="pilgrim_tabby", email="pilgrimtabby@gmail.com" },
+]
+description = ""
+readme = "README.md"
+requires-python = ">=3.8"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: BSD License",
+    "Operating System :: Microsoft :: Windows",
+    "Operating System :: MacOS",
+]
+
+[project.urls]
+Homepage = "https://github.com/pilgrimtabby/chrome-switcher"
+Issues = "https://github.com/pilgrimtabby/chrome-switcher/issues"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project.scripts]
+savetabs = "chrome_switcher.main:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/chrome_switcher"]
