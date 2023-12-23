@@ -1,0 +1,7 @@
+C:\Users\janel\Desktop\OpenTempChrome\OpenTempChrome\bin\Debug\OpenTempChrome.exe.config
+C:\Users\janel\Desktop\OpenTempChrome\OpenTempChrome\bin\Debug\OpenTempChrome.exe
+C:\Users\janel\Desktop\OpenTempChrome\OpenTempChrome\bin\Debug\OpenTempChrome.pdb
+C:\Users\janel\Desktop\OpenTempChrome\OpenTempChrome\obj\Debug\OpenTempChrome.csproj.AssemblyReference.cache
+C:\Users\janel\Desktop\OpenTempChrome\OpenTempChrome\obj\Debug\OpenTempChrome.csproj.CoreCompileInputs.cache
+C:\Users\janel\Desktop\OpenTempChrome\OpenTempChrome\obj\Debug\OpenTempChrome.exe
+C:\Users\janel\Desktop\OpenTempChrome\OpenTempChrome\obj\Debug\OpenTempChrome.pdb
