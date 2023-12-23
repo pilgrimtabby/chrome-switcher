@@ -11,7 +11,7 @@ def main():
     # chrome_options.add_experimental_option("excludeSwitches", ['enable-automation'])
     # chrome_options.add_experimental_option("detach", True)
     # driver = webdriver.Chrome(options=chrome_options)
-    # driver.get("chrome://newtab/")
+    # driver.get("chrome:/newtab/")
 
     chrome_path = get_chrome_path()
     program_path = os.path.dirname(os.path.realpath(__file__))
@@ -25,12 +25,12 @@ def main():
 
     with tempfile.TemporaryDirectory() as tempdir:
         if platform.system() == "Windows":
-            subprocess.Popen(["START", "/B", chrome_path, "--new-window",
-                              f"--user-data-dir={tempdir}"])
+            open_chrome_script = f"{program_path}/scripts/c#/OpenTempChrome/OpenTempChrome/bin/"
+                                  "Release/OpenTempChrome.exe"
+            subprocess.Popen([open_chrome_script, chrome_path, tempdir).wait()
         else:
-            pid = subprocess.Popen(["bash", f"{program_path}/scripts/bash/launch_temp.sh",
-                                    chrome_path, tempdir]).pid
-            os.waitpid(pid, 0)
+            open_chrome_script = f"{program_path}/scripts/bash/launch_temp.sh"
+            subprocess.Popen(["bash", open_chrome_script, chrome_path, tempdir]).wait()
         return
 
 
@@ -54,13 +54,13 @@ def get_chrome_path():
     """Docstring"""
     chrome_path = ""
     if platform.system() == "Windows":
-        possible_chrome_paths = ["C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
-                                 "C:\\Program Files (x86)\\Google\\Chrome\\Application\\"
+        possible_chrome_paths = ["C:/Program Files/Google/Chrome/Application/chrome.exe",
+                                 "C:/Program Files (x86)/Google/Chrome/Application/"
                                  "chrome.exe",
-                                 "C:\\Program Files (x86)\\Google\\Application\\chrome.exe",
-                                 "C:\\Users\\UserName\\AppDataLocal\\Google\\Chrome\\chrome.exe",
-                                 "C:\\Documents and Settings\\UserName\\Local Settings\\"
-                                 "Application Data\\Google\\Chrome\\chrome.exe"]
+                                 "C:/Program Files (x86)/Google/Application/chrome.exe",
+                                 "C:/Users/UserName/AppDataLocal/Google/Chrome/chrome.exe",
+                                 "C:/Documents and Settings/UserName/Local Settings/"
+                                 "Application Data/Google/Chrome/chrome.exe"]
         for path in possible_chrome_paths:
             if os.path.exists(path):
                 return path
@@ -107,7 +107,7 @@ def get_chrome_path():
             get_chrome_path_open_script = 'POSIX path of (path to application id "com.google.Chrome")'
             chrome_path_raw = subprocess.check_output(["osascript", "-e",
                                                         get_chrome_path_open_script])
-        chrome_path_parsed = chrome_path_raw.decode("UTF-8").replace("\n", "")
+        chrome_path_parsed = chrome_path_raw.decode("UTF-8").replace("/n", "")
         chrome_path = f"{chrome_path_parsed}Contents/MacOS/Google Chrome"
         if os.path.exists(chrome_path):
             return chrome_path
