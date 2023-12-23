@@ -6,7 +6,7 @@ version = "0.0.1"
 authors = [
   { name="pilgrim_tabby", email="pilgrimtabby@gmail.com" },
 ]
-description = ""
+description = "Easily create and load new Chrome profiles"
 readme = "README.md"
 requires-python = ">=3.8"
 classifiers = [
