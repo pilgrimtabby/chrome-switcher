@@ -18,13 +18,13 @@ namespace OpenTempChrome
                 args = new[] { "C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe", 
                                "C:\\Users\\test" };
             # endif
-            var proc = new Process();
-            proc.StartInfo.FileName = args[0];
-            proc.StartInfo.Arguments = $"chrome://newtab --user-data-dir=\"{args[1]}\"";
-            proc.Start();
-            proc.WaitForExit();
-            Console.WriteLine(proc.ExitCode.ToString());
-            proc.Close();
+            var chrome = new Process();
+            chrome.StartInfo.FileName = args[0];
+            chrome.StartInfo.Arguments = $"chrome://newtab --user-data-dir=\"{args[1]}\"";
+            chrome.Start();
+            chrome.WaitForExit();
+            Console.WriteLine(chrome.ExitCode.ToString());
+            chrome.Close();
         }
     }
 }
