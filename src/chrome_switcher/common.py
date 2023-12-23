@@ -60,6 +60,18 @@ def get_dir_path():
     return dir_path
 
 
+def get_file_path():
+    """Brings up a window that allows user to select a file."""
+    if platform.system() == "Windows":
+        program_window = win32ui.GetForegroundWindow()
+    else:
+        program_window = None
+    tkinter.Tk().withdraw()  # Prevents empty tkinter window from appearing
+    file_path = tkinter.filedialog.askopenfilename()
+    focus_window()
+    return file_path
+
+
 def exit_screen_success():
     """Splash screen that plays upon successful exit (file completion)."""
     advanced_cursor.hide()

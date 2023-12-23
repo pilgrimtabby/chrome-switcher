@@ -45,7 +45,6 @@ def main():
     print(chrome_path)
 
 
-
 def get_window_count():
     """Uses Applescript to get number of currently open Chrome windows (macOS only)."""
     get_window_count_script = '''
