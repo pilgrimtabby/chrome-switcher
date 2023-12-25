@@ -1,6 +1,7 @@
 [project]
 name = "chrome-switcher"
-dependencies = [ 
+dependencies = [
+  "chime",
 ]
 version = "0.0.1"
 authors = [

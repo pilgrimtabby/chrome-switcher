@@ -3,17 +3,12 @@ import os
 import pickle
 import platform
 import subprocess
-import sys
 import time
 import tkinter
 import tkinter.filedialog
 
 if platform.system() == "Windows":
-    import msvcrt
     import win32ui
-else:
-    import termios
-    import tty
 
 import chime
 import advanced_cursor
@@ -72,14 +67,14 @@ def get_file_path():
     return file_path
 
 
-def exit_screen_success():
+def exit_screen():
     """Splash screen that plays upon successful exit (file completion)."""
     advanced_cursor.hide()
     chime.theme("mario")
     chime.info()
     clear()
     print("\n\n\n"
-          "              File successfully saved! \n\n\n"
+          "                 Come again soon! \n\n\n"
           "               ⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡇\n"
           "               ⣿⣿⣿⣿⣿⣿⣿⣿⣿⠿⠿⠿⠿⠿⢿⡿⢿⣿⣿⣿⠃\n"
           "               ⣿⣿⣿⣿⣿⣿⣥⣄⣀⣀⠀⠀⠀⠀⠀⢰⣾⣿⣿⠏\n"
@@ -91,21 +86,6 @@ def exit_screen_success():
     time.sleep(.5)
     clear()
     advanced_cursor.show()
-
-
-def get_one_char():
-    """Accepts and returns exactly one character of input without needing
-       to press enter."""
-    if platform.system() == "Windows":
-        return msvcrt.getwch()
-    fdd = sys.stdin.fileno()
-    old_settings = termios.tcgetattr(fdd)
-    try:
-        tty.setraw(sys.stdin.fileno())
-        char = sys.stdin.read(1)
-    finally:
-        termios.tcsetattr(fdd, termios.TCSADRAIN, old_settings)
-    return char
 
 
 def box(txt):
