@@ -108,7 +108,6 @@ def dump_pickle(user_data, file_name):
     program_dir_path = os.path.dirname(os.path.realpath(__file__))
     with open(f"{program_dir_path}/pickles/{file_name}", "wb") as file:
         pickle.dump(user_data, file)
-        file.close()
 
 
 def load_pickle(file_name):

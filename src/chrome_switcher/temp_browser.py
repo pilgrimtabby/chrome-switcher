@@ -18,10 +18,31 @@ def main():
               "try again.")
         time.sleep(3)
         return False
+
     header = common.box("Chrome Switcher | Temporary browsing")
     common.clear()
-    print(f"{header}\n\nOpening temporary browser...")
-    subprocess.Popen([sys.executable, f"{program_path}/temp_browser_helper.py", chrome_path],
-                    start_new_session=True, stdout=subprocess.DEVNULL, stderr=subprocess.STDOUT)
+    user_input = input(f"{header}\n\nNOTE: Temporary browsing data is erased as soon as the "
+                       "session ends (on Windows, exiting all windows; on macOS, quitting the "
+                       "instance of Chrome). If your battery dies or your computer otherwise "
+                       "unexpectedly shuts down, there is a small chance data from your browsing "
+                       "session might remain.\n\n"
+                       "Type \"yes\" to continue (press enter to go back): ").lower()
+    if user_input != "yes":
+        return False
+
+    print("\nOpening temporary browser...")
     time.sleep(1)
+
+    new_profile_settings = common.load_pickle("new_profile_settings.txt")
+    if new_profile_settings != "" and not os.path.exists(new_profile_settings):
+        print("\nTried to inheret settings from the directory you chose as a base, but it could "
+              "not be found. Using default Chrome settings instead.")
+        time.sleep(5)
+    elif os.path.exists(new_profile_settings):
+        print("\nInheriting settings from the directory you chose as a base. Chrome may not open "
+              "for a few moments after this program exits, so sit tight.")
+        time.sleep(5)
+
+    subprocess.Popen([sys.executable, f"{program_path}/temp_browser_helper.py", chrome_path],
+                      start_new_session=True, stdout=subprocess.DEVNULL, stderr=subprocess.STDOUT)
     return True
