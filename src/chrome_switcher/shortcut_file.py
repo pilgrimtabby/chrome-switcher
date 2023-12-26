@@ -40,13 +40,13 @@ def main(from_menu=False):
                 common.clear()
                 print(f"{header}")
                 input(f"\nGenerated shortcut file:\n{new_script_path}\n\n"
-                       "To use this shortcut program, drag and drop Chrome profile folders onto "
+                       "To use this shortcut file, drag and drop Chrome profile folders onto "
                        "it.\n\n"
                        "Press enter to continue.")
             else:
                 input(f"\nGenerated shortcut file:\n{new_script_path}\n\n"
                        "To use the Chrome profile you just made, drag and drop it onto the "
-                       "shortcut program.\n\n"
+                       "shortcut file.\n\n"
                        "Press enter to continue.")
 
         else:
@@ -69,7 +69,12 @@ def main(from_menu=False):
             if from_menu:
                 common.clear()
                 print(f"{header}")
-            input(f"\nGenerated shortcut file:\n{profiles_directory}/open_profile.app\n\n"
-                  "To use the Chrome profile you just made, drag and drop it onto the shortcut "
-                  "program.\n\n"
-                  "Press enter to continue.")
+                input(f"\nGenerated shortcut app:\n{compiled_app_path}\n\n"
+                       "To use this shortcut app, drag and drop Chrome profile folders onto "
+                       "it.\n\n"
+                       "Press enter to continue.")
+            else:
+                input(f"\nGenerated shortcut app:\n{compiled_app_path}\n\n"
+                       "To use the Chrome profile you just made, drag and drop it onto the "
+                       "shortcut app.\n\n"
+                       "Press enter to continue.")

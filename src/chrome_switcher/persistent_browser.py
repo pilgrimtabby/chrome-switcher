@@ -30,7 +30,7 @@ def main():
 
     create_profile(unique_profile_name)
     if (not os.path.exists(f"{profiles_directory}/open_profile.bat")
-        or not os.path.exists(f"{profiles_directory}/open_profile.app")):
+        and not os.path.exists(f"{profiles_directory}/open_profile.app")):
         shortcut_file.main()
 
     header = common.box("Chrome Switcher | New profile | Open browser")
@@ -50,10 +50,12 @@ def open_browser(profile_name):
     if chrome_path is not None:
         if platform.system() == "Windows":
             subprocess.Popen([chrome_path, "chrome://newtab",
-                              f"--user-data-dir={profiles_directory}/{profile_name}"])
+                              f"--user-data-dir={profiles_directory}/{profile_name}"],
+                              stdout=subprocess.DEVNULL, stderr=subprocess.STDOUT)
         else:
             subprocess.Popen([chrome_path, "--args", f"--user-data-dir={profiles_directory}/"
-                              f"{profile_name}", "--new-window", "chrome://newtab"])
+                              f"{profile_name}", "--new-window", "chrome://newtab"],
+                              stdout=subprocess.DEVNULL, stderr=subprocess.STDOUT)
         return True
     print("\nGoogle Chrome could not be found. Please verify your installation and try again.")
     time.sleep(2)
