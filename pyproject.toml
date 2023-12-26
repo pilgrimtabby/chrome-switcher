@@ -2,6 +2,7 @@
 name = "chrome-switcher"
 dependencies = [
   "chime",
+  "pywin32; platform_system == 'Windows'",
 ]
 version = "0.0.1"
 authors = [
@@ -26,7 +27,7 @@ requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [project.scripts]
-savetabs = "chrome_switcher.main:main"
+cswitch = "chrome_switcher.main:main"
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/chrome_switcher"]
