@@ -25,7 +25,7 @@ def main():
             subprocess.Popen([open_chrome_script, chrome_path, tempdir],
                              creationflags=subprocess.CREATE_NO_WINDOW).wait()
         else:
-            open_chrome_script = f"{program_path}/scripts/bash/launch_temp.sh"
+            open_chrome_script = f"{program_path}/scripts/bash/open_temp_chrome.sh"
             subprocess.Popen(["bash", open_chrome_script, chrome_path, tempdir]).wait()
 
 

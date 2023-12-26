@@ -3,7 +3,7 @@ import platform
 import time
 import common
 import persistent_browser
-import shortcut_file
+import shortcut_files
 import temp_browser
 import settings
 
@@ -13,10 +13,10 @@ def main():
     header = common.box("Chrome Switcher")
     if platform.system() == "Windows":
         menu_options = ["Create persistent profile", "Launch temporary browser", "Regenerate "
-                        "shortcut file", "Settings", "Quit"]
+                        "shortcut files", "Settings", "Quit"]
     else:
         menu_options = ["Create persistent profile", "Launch temporary browser", "Regenerate "
-                        "shortcut app", "Settings", "Quit"]
+                        "shortcut app and file", "Settings", "Quit"]
     quit_menu = False
     while not quit_menu:
         common.clear()
@@ -40,8 +40,9 @@ def main():
                 if opened:
                     quit_menu = True
 
-            elif choice == "Regenerate shortcut file" or choice == "Regenerate shortcut app":
-                shortcut_file.main(from_menu=True)
+            elif (choice == "Regenerate shortcut files"
+                  or choice == "Regenerate shortcut app and file"):
+                shortcut_files.main(from_menu=True)
 
             elif choice == "Settings":
                 settings.main()

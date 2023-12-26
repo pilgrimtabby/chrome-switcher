@@ -1,5 +1,6 @@
 """Functions used in more than one module."""
 import os
+import pathlib
 import pickle
 import platform
 import subprocess
@@ -41,6 +42,20 @@ def clear():
         os.system("cls")
     else:
         os.system("clear")
+
+
+def delete_extra_chrome_lnk():
+    new_profile_settings = load_pickle("new_profile_settings.txt")
+    chrome_lnk_path = f"{os.path.join(os.path.expanduser("~"), "Desktop")}/Google Chrome.lnk"
+    if new_profile_settings == "" and not os.path.exists(chrome_lnk_path):
+        for _ in range(6000):
+            if os.path.exists(chrome_lnk_path):
+                try:
+                    pathlib.Path.unlink(chrome_lnk_path)
+                    break
+                except Exception as e:
+                    time.sleep(0.01)
+            time.sleep(0.01)
 
 
 def get_dir_path():

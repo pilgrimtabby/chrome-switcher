@@ -1,14 +1,16 @@
 """Get user info: directory for Chrome profiles, profile name, and where to store profile
 shortcuts."""
 import os
+import pathlib
 import platform
 import shutil
 import subprocess
+import sys
 import time
 import browser_path
 import common
 import settings
-import shortcut_file
+import shortcut_files
 
 
 def main():
@@ -30,8 +32,10 @@ def main():
 
     create_profile(unique_profile_name)
     if (not os.path.exists(f"{profiles_directory}/open_profile.bat")
-        and not os.path.exists(f"{profiles_directory}/open_profile.app")):
-        shortcut_file.main()
+        and not os.path.exists(f"{profiles_directory}/open_profile.app") or
+        not os.path.exists(f"{profiles_directory}/default_profile.bat")
+        and not os.path.exists(f"{profiles_directory}/default_profile")):
+        shortcut_files.main()
 
     header = common.box("Chrome Switcher | New profile | Open browser")
     common.clear()
@@ -49,9 +53,12 @@ def open_browser(profile_name):
     profiles_directory = common.load_pickle("profiles_directory.txt")
     if chrome_path is not None:
         if platform.system() == "Windows":
+            program_path = os.path.dirname(os.path.realpath(__file__))
             subprocess.Popen([chrome_path, "chrome://newtab",
                               f"--user-data-dir={profiles_directory}/{profile_name}"],
                               stdout=subprocess.DEVNULL, stderr=subprocess.STDOUT)
+            subprocess.Popen([sys.executable, f"{program_path}/delete_lnk.py"],
+                              creationflags=subprocess.DETACHED_PROCESS)
         else:
             subprocess.Popen([chrome_path, "--args", f"--user-data-dir={profiles_directory}/"
                               f"{profile_name}", "--new-window", "chrome://newtab"],
