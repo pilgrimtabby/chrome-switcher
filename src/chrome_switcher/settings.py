@@ -49,7 +49,7 @@ def change_profiles_directory_settings():
     if new_target_directory == "" and not os.path.exists(profiles_directory):
         common.dump_pickle(os.path.join(os.path.expanduser("~"), "Desktop"),
                            "profiles_directory.txt")
-        print(f"\nSet directory to {os.path.join(os.path.expanduser("~"), "Desktop")}")
+        print(f"\nSet directory to {os.path.join(os.path.expanduser('~'), 'Desktop')}")
         time.sleep(1)
     elif os.path.exists(new_target_directory):
         common.dump_pickle(new_target_directory, "profiles_directory.txt")

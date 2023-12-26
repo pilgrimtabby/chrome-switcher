@@ -1,7 +1,6 @@
 """Get user info: directory for Chrome profiles, profile name, and where to store profile
 shortcuts."""
 import os
-import pathlib
 import platform
 import shutil
 import subprocess

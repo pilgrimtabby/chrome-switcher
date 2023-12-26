@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+# /Applications/Google Chrome.app/Contents/MacOS/Google Chrome is replaced by the user's Google Chrome.app path by the Python script.
+# This script opens Google Chrome with the user's default Google Chrome profile once
+# the Python script replaces /Applications/Google Chrome.app/Contents/MacOS/Google Chrome and makes the file executable.
+
+
+"chrome_path" --args --new-window --user-data-dir="$HOME/Library/Application Support/Google/Chrome/"

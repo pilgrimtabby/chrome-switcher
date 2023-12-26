@@ -49,6 +49,7 @@ def main():
 
             elif choice == "Quit":
                 quit_menu = True
+
         else:
             print("Not a valid option! Please try again.")
             time.sleep(1)

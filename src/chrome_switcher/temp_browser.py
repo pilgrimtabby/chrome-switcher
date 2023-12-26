@@ -3,7 +3,6 @@ import os
 import platform
 import subprocess
 import sys
-import threading
 import time
 import browser_path
 import common

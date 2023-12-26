@@ -8,7 +8,7 @@ import common
 def main():
     """Docstring"""
     new_profile_settings = common.load_pickle("new_profile_settings.txt")
-    chrome_lnk_path = f"{os.path.join(os.path.expanduser("~"), "Desktop")}/Google Chrome.lnk"
+    chrome_lnk_path = f"{os.path.join(os.path.expanduser('~'), 'Desktop')}/Google Chrome.lnk"
     if new_profile_settings == "" and not os.path.exists(chrome_lnk_path):
         for _ in range(3000):
             if os.path.exists(chrome_lnk_path):

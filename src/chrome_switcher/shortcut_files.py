@@ -28,7 +28,7 @@ def main(from_menu=False):
                 return
 
         if platform.system() == "Windows":
-            script_paths = [f"{program_path}/scripts/batch/open_profile.bat", 
+            script_paths = [f"{program_path}/scripts/batch/open_profile.bat",
                             f"{program_path}/scripts/batch/default_profile.bat"]
             for script_path in script_paths:
                 with open(script_path, "r", encoding="UTF-8") as file:

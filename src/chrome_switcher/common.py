@@ -1,6 +1,5 @@
 """Functions used in more than one module."""
 import os
-import pathlib
 import pickle
 import platform
 import subprocess
@@ -44,20 +43,6 @@ def clear():
         os.system("clear")
 
 
-def delete_extra_chrome_lnk():
-    new_profile_settings = load_pickle("new_profile_settings.txt")
-    chrome_lnk_path = f"{os.path.join(os.path.expanduser("~"), "Desktop")}/Google Chrome.lnk"
-    if new_profile_settings == "" and not os.path.exists(chrome_lnk_path):
-        for _ in range(6000):
-            if os.path.exists(chrome_lnk_path):
-                try:
-                    pathlib.Path.unlink(chrome_lnk_path)
-                    break
-                except Exception as e:
-                    time.sleep(0.01)
-            time.sleep(0.01)
-
-
 def get_dir_path():
     """Brings up a window that allows user to select a directory."""
     if platform.system() == "Windows":
@@ -78,7 +63,7 @@ def get_file_path():
         program_window = None
     tkinter.Tk().withdraw()  # Prevents empty tkinter window from appearing
     file_path = tkinter.filedialog.askopenfilename()
-    focus_window()
+    focus_window(program_window)
     return file_path
 
 
