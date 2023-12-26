@@ -1,5 +1,6 @@
 """Docstring"""
 import os
+import platform
 import subprocess
 import sys
 import time
@@ -43,6 +44,12 @@ def main():
               "for a few moments after this program exits, so sit tight.")
         time.sleep(5)
 
-    subprocess.Popen([sys.executable, f"{program_path}/temp_browser_helper.py", chrome_path],
-                      start_new_session=True, stdout=subprocess.DEVNULL, stderr=subprocess.STDOUT)
+    if platform.system() == "Windows":
+        subprocess.Popen([sys.executable, f"{program_path}/temp_browser_helper.py", chrome_path],
+                         stdout=subprocess.DEVNULL, stderr=subprocess.STDOUT,
+                         creationflags=subprocess.DETACHED_PROCESS)
+    else:
+        subprocess.Popen([sys.executable, f"{program_path}/temp_browser_helper.py", chrome_path],
+                          stdout=subprocess.DEVNULL, stderr=subprocess.STDOUT,
+                          start_new_session=True)
     return True

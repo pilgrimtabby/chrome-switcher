@@ -22,7 +22,8 @@ def main():
         if platform.system() == "Windows":
             open_chrome_script = (f"{program_path}/scripts/c#/OpenTempChrome/OpenTempChrome/bin/"
                                   "Release/OpenTempChrome.exe")
-            subprocess.Popen([open_chrome_script, chrome_path, tempdir]).wait()
+            subprocess.Popen([open_chrome_script, chrome_path, tempdir],
+                             creationflags=subprocess.CREATE_NO_WINDOW).wait()
         else:
             open_chrome_script = f"{program_path}/scripts/bash/launch_temp.sh"
             subprocess.Popen(["bash", open_chrome_script, chrome_path, tempdir]).wait()

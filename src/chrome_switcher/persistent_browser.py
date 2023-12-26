@@ -81,7 +81,7 @@ def create_profile(profile_name):
         os.mkdir(f"{profiles_directory}/{profile_name}")
     else:
         try:
-            print(f"Copying base chrome file to {profiles_directory}/{profile_name}\n"
+            print(f"Copying base chrome profile to {profiles_directory}/{profile_name}\n"
                   "This may take a few moments...")
             shutil.copytree(new_profile_settings, f"{profiles_directory}/{profile_name}")
         except shutil.Error:

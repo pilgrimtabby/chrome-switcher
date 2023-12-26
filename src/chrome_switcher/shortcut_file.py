@@ -42,12 +42,12 @@ def main(from_menu=False):
                 input(f"\nGenerated shortcut file:\n{new_script_path}\n\n"
                        "To use this shortcut file, drag and drop Chrome profile folders onto "
                        "it.\n\n"
-                       "Press enter to continue.")
+                       "Press enter to return to the menu: ")
             else:
                 input(f"\nGenerated shortcut file:\n{new_script_path}\n\n"
-                       "To use the Chrome profile you just made, drag and drop it onto the "
-                       "shortcut file.\n\n"
-                       "Press enter to continue.")
+                       "If you want to use the Chrome profile you just made later on, drag and "
+                       "drop it onto the shortcut file.\n\n"
+                       "Press enter to continue: ")
 
         else:
             script_path = f"{program_path}/scripts/applescript/open_profile.applescript"
@@ -72,9 +72,9 @@ def main(from_menu=False):
                 input(f"\nGenerated shortcut app:\n{compiled_app_path}\n\n"
                        "To use this shortcut app, drag and drop Chrome profile folders onto "
                        "it.\n\n"
-                       "Press enter to continue.")
+                       "Press enter to return to the menu: ")
             else:
                 input(f"\nGenerated shortcut app:\n{compiled_app_path}\n\n"
-                       "To use the Chrome profile you just made, drag and drop it onto the "
-                       "shortcut app.\n\n"
-                       "Press enter to continue.")
+                       "If you want to use the Chrome profile you just made later on, drag and "
+                       "drop it onto the shortcut file.\n\n"
+                       "Press enter to continue: ")
