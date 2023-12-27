@@ -59,9 +59,7 @@ def get_file_path(file_type):
     if platform.system() == "Windows":
         program_window = win32ui.GetForegroundWindow()
     else:
-        program_path = os.path.dirname(os.path.realpath(__file__))
-        script = f"{program_path}/scripts/applescript/get_foreground_window.applescript"
-        program_window = subprocess.check_output(["osascript", script]).decode("utf-8").strip("\n")
+        program_window = None
     tkinter.Tk().withdraw()  # Stop empty tkinter window from opening
     if file_type == "file":
         file_path = tkinter.filedialog.askopenfilename()
@@ -95,7 +93,7 @@ def focus_window(window=None):
         if window is not None:
             window.SetForegroundWindow()
     else:
-        # Call applescript that focuses window with name `window`.
+        # Call applescript that focuses window.
         program_path = os.path.dirname(os.path.realpath(__file__))
         script = f"{program_path}/scripts/applescript/focus_window.applescript"
         subprocess.run(["osascript", script], check=False)

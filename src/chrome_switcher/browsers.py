@@ -68,8 +68,8 @@ def make_persistent_profile():
     header = common.box("Chrome Switcher | New profile | Open browser")
     common.clear()
     open_it = input(f"{header}\n\nStart a new session of Chrome now with this profile?\n"
-                         "Press enter to open, or type \"no\" to go to the menu: ").lower()
-    if open_it != "no":
+                         "Press enter to open, or type \"n\" to go to the menu: ").lower()
+    if open_it != "n":
         return open_persistent_profile(unique_profile_name)
     return False
 
@@ -102,8 +102,8 @@ def make_temporary_profile():
                        "instance of Chrome). If your battery dies or your computer otherwise "
                        "unexpectedly shuts down, there is a small chance data from your browsing "
                        "session might remain.\n\n"
-                       "Type \"yes\" to continue (press enter to go back): ").lower()
-    if user_input != "yes":
+                       "Type \"y\" to continue (press enter to go back): ").lower()
+    if user_input != "y":
         return False
 
     print("\nOpening temporary browser...")

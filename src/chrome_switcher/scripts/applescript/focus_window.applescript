@@ -1,10 +1,19 @@
 (*
- * Brings the Terminal window with the name passed into this program from the command line to the front.
+ * Brings the program's Terminal window to the front.
  *
- * Args:
- *     item 1 of argv (str): The name of the Terminal window you want to bring to the front.
+ * Loops through each Terminal window. If its name contains "main.py" or "cswitch", activate Terminal and set
+ * that window to window 1.
  *)
 
-on run argv
-	tell application "Terminal" to set index of (window (quoted form of (item 1 of argv))) to 1
-end run
+tell application "Terminal"
+	set windowList to every window
+	repeat with myWindow in windowList
+		if (name of myWindow) contains "cswitch" then
+			activate
+			set index of myWindow to 1
+		else if (name of myWindow) contains "main.py" then
+			activate
+			set index of myWindow to 1
+		end if
+	end repeat
+end tell
