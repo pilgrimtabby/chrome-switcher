@@ -6,6 +6,9 @@ Persistent:
     no longer exists.
 
 Temporary:
+    Prompt user to confirm, get the Chrome path, and launch
+    temp_browser_helper.py in a separate process so it can run in the
+    background and safely delete itself once the session ends.
 
 Functions:
     make_persistent_profile() -> bool
