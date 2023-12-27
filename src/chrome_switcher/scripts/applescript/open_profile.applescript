@@ -1,8 +1,13 @@
 (*
+ * Open Google Chrome with user-data-dir `theDroppedItem`.
+ *
  * Drag-and-drop script. After `chrome-path` is replaced with the path to the Chrome executable
  * by shortcut_file.py, this script is compiled into a .scpt file and bundled with
  * open_profile.app. If the user drops a Chrome profile folder on the app (or any folder,
  * really), it will open Chrome with that folder as the user data directory. 
+ *
+ * Args:
+ * theDroppedItem (str): The absolute path to the item dropped onto this script after compilation.
  *)
 
 on open theDroppedItem
