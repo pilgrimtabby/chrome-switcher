@@ -6,7 +6,10 @@ Functions:
 """
 import platform
 import time
-import chime
+
+if platform.system() != "Windows":
+    import chime
+
 import advanced_cursor
 import browsers
 import common
@@ -66,9 +69,10 @@ def main():
 
 def exit_screen():
     """Displays splash screen upon exit."""
+    if platform.system() != "Windows":
+        chime.theme("mario")
+        chime.info()
     advanced_cursor.hide()
-    chime.theme("mario")
-    chime.info()
     common.clear()
     print("\n\n\n"
           "                 Come again soon! \n\n\n"

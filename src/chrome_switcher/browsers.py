@@ -137,9 +137,9 @@ def make_temporary_profile():
     # settings.change_new_profile_settings(), might take a minute.
     elif os.path.exists(new_profile_settings):
         print("\nInheriting settings from the directory you chose as a base.\nSit tight! "
-              "Depending on your computer speed, it could up to a minute or more to copy the base "
+              "Depending on your computer speed, it could take several minutes to copy the base "
               "profile and open the browsing session after this program exits.")
-        time.sleep(5)
+        time.sleep(10)
 
     return True
 
