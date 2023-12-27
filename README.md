@@ -4,9 +4,9 @@ Create new Google Chrome sessions, persistent and temporary, separate from your 
 
 New sessions start with default Chrome settings by default, but it is possible to base new sessions off of others. Some possibilities include:
 
--Browsing in a temporary session that inherits bookmarks, cookies, and extensions from your default Chrome profile without impacting it or leaving a history
+- Browsing in a temporary session that inherits bookmarks, cookies, and extensions from your default Chrome profile without impacting it or leaving a history
 
--Browsing in persistent sessions that can be accessed repeatedly, each with their own bookmarks, history, extensions, and cookies (no more signing in and out of different profiles on certain websites!)
+- Browsing in persistent sessions that can be accessed repeatedly, each with their own bookmarks, history, extensions, and cookies (no more signing in and out of different profiles on certain websites!)
 
 # Usage
 
