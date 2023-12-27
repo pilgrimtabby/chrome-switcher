@@ -36,13 +36,13 @@ Remakes the shortcut files mentioned [above](#new-persistent-session) if they ge
 
 # Settings
 
-As mentioned [above](#about), you can select an existing Chrome session directory that new sessions will inherit from. For instance, you might want to inheret from the default session directory. On most computers, that directory is here:
+As mentioned [above](#about), you can select an existing Chrome session directory that new sessions will inherit from. For instance, you might want to inheret from the default session directory. On most computers, that directory is at:
 
 Windows: `%LOCALAPPDATA%\\Google\\Chrome\\User Data`
 
 macOS: `~/Library/Application Support/Google/Chrome`
 
-Change this in the settings menu by following the GUI and selecting a folder.
+Start new sessions with this base (or another) in the settings menu by following the GUI and selecting a folder.
 
 NOTE: Doing this may slow down new session generation as files have to be copied over.
 
