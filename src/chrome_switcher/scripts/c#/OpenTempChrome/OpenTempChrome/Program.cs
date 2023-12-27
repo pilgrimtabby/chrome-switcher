@@ -1,6 +1,6 @@
 ﻿/**
- * Starts a unique session of Google Chrome and waits until the Chrome session closes to exit.
- * I call this from a Python script and wait on it. When it closes, the user data directory
+ * Start a unique session of Google Chrome and waits until the Chrome session closes to exit.
+ * The Python script calls this and waits for it to finish. When it closes, the user data directory
  * is deleted by the script.
  * args[0]: Path to chrome.exe.
  * args[1]: Desired user data directory path.

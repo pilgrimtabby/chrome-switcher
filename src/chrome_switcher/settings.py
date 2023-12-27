@@ -1,11 +1,18 @@
-"""Docstring"""
+"""Display GUI for settings menu.
+
+Functions:
+    main()
+    change_profiles_directory_settings()
+    get_unique_name(profile_name) -> str
+    change_new_profile_settings()
+"""
 import os
 import time
 import common
 
 
 def main():
-    """Menu to change program settings."""
+    """Display settings menu."""
     menu_options = ["Profiles directory", "New profile settings", "Go back"]
     quit_menu = False
     while not quit_menu:
@@ -33,24 +40,32 @@ def main():
 
 
 def change_profiles_directory_settings():
-    """Function that prompts users to choose a directory for new profiles, then pickles it."""
+    """Prompt user for directory for storing persistent profiles."""
     header = common.box("Chrome Switcher | Settings | Profiles location")
     profiles_directory = common.load_pickle("profiles_directory.txt")
     common.clear()
     print(f"{header}")
+
+    # Dialog if a dir has already been chosen and exists
     if os.path.exists(profiles_directory):
         print(f"\nCurrent directory for newly generated persistent profiles:\n{profiles_directory}")
-        user_choice = input("\nTo choose a new directory, press \"y\" (press enter to exit): ")
+        user_choice = input("\nTo choose a new directory, press \"y\" (press enter to exit): "
+                            ).lower()
         if user_choice != "y":
             return
 
+    # Dialog regardless of whether a dir has already been chosen
     print("\nPlease select a directory for new Chrome profiles:")
-    new_target_directory = common.get_dir_path()
+    new_target_directory = common.get_file_path(file_type="dir")
+
+    # Desktop is default if user cancels and no previous setting exists
     if new_target_directory == "" and not os.path.exists(profiles_directory):
         common.dump_pickle(os.path.join(os.path.expanduser("~"), "Desktop"),
                            "profiles_directory.txt")
         print(f"\nSet directory to {os.path.join(os.path.expanduser('~'), 'Desktop')}")
         time.sleep(1)
+
+    # Pickle choice if it's a real path
     elif os.path.exists(new_target_directory):
         common.dump_pickle(new_target_directory, "profiles_directory.txt")
         common.clear()
@@ -59,7 +74,9 @@ def change_profiles_directory_settings():
 
 
 def change_new_profile_settings():
-    """Docstring"""
+    """Allows user to choose a base profile directory that new profiles
+    will inherit settings from.
+    """
     header = common.box("Chrome Switcher | Settings | New profile settings")
     quit_menu = False
     while not quit_menu:
@@ -88,7 +105,7 @@ def change_new_profile_settings():
         if user_choice == "y":
             common.clear()
             print(f"{header}\n\nSelect a new base directory:")
-            new_base_directory = common.get_dir_path()
+            new_base_directory = common.get_file_path(file_type="dir")
             if new_base_directory != "":
                 common.dump_pickle(new_base_directory, "new_profile_settings.txt")
                 common.clear()

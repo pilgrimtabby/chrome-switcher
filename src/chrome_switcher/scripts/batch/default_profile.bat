@@ -1,4 +1,5 @@
-REM Opens Google Chrome in a new session using Chrome's default user-data-dir.
+REM Open Google Chrome in a new session using Chrome's default user-data-dir.
+REM The Python script replaces "chrome_path" with the path to chrome.exe.
 
 
 @ECHO OFF

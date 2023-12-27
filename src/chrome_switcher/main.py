@@ -1,15 +1,21 @@
-"""Docstring"""
+"""Display the GUI main menu.
+
+Functions:
+    main()
+    exit_screen()
+"""
 import platform
 import time
+import chime
+import advanced_cursor
+import browsers
 import common
-import persistent_browser
 import shortcut_files
-import temp_browser
 import settings
 
 
 def main():
-    """Docstring"""
+    """Display the GUI main menu; prompt the user to choose an option."""
     header = common.box("Chrome Switcher")
     if platform.system() == "Windows":
         menu_options = ["Create persistent profile", "Launch temporary browser", "Regenerate "
@@ -17,6 +23,7 @@ def main():
     else:
         menu_options = ["Create persistent profile", "Launch temporary browser", "Regenerate "
                         "shortcut app and file", "Settings", "Quit"]
+
     quit_menu = False
     while not quit_menu:
         common.clear()
@@ -31,14 +38,14 @@ def main():
             choice = menu_options[int(user_input) - 1]
 
             if choice == "Create persistent profile":
-                opened = persistent_browser.main()
+                opened = browsers.make_persistent_profile()
                 if opened:
-                    quit_menu = True
+                    quit_menu = True  # End program if Chrome is opened
 
             elif choice == "Launch temporary browser":
-                opened = temp_browser.main()
+                opened = browsers.make_temporary_profile()
                 if opened:
-                    quit_menu = True
+                    quit_menu = True  # End program if Chrome is opened
 
             elif (choice == "Regenerate shortcut files"
                   or choice == "Regenerate shortcut app and file"):
@@ -54,7 +61,28 @@ def main():
             print("Not a valid option! Please try again.")
             time.sleep(1)
 
-    common.exit_screen()
+    exit_screen()
+
+
+def exit_screen():
+    """Displays splash screen upon exit."""
+    advanced_cursor.hide()
+    chime.theme("mario")
+    chime.info()
+    common.clear()
+    print("\n\n\n"
+          "                 Come again soon! \n\n\n"
+          "               ⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡇\n"
+          "               ⣿⣿⣿⣿⣿⣿⣿⣿⣿⠿⠿⠿⠿⠿⢿⡿⢿⣿⣿⣿⠃\n"
+          "               ⣿⣿⣿⣿⣿⣿⣥⣄⣀⣀⠀⠀⠀⠀⠀⢰⣾⣿⣿⠏\n"
+          "               ⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣶⣤⣜⡻⠋\n"
+          "               ⣿⣿⡿⣿⣿⣿⣿⠿⠿⠟⠛⠛⠛⠋⠉⠉⢉⡽⠃\n"
+          "               ⠉⠛⠛⠛⠉⠁⠀⠀⠀⠀⠀⠀⠀⠀⡤⠚⠉\n"
+          "               ⣿⠉⠛⢶⣶⣄⠀⠀⠀⠀⠀⠀⠀⠀⡇\n"
+          "               ⠟⠃⠀⠀⠀⠈⠲⣴⣦⣤⣤⣤⣶⡾⠁\n\n")
+    time.sleep(.5)
+    common.clear()
+    advanced_cursor.show()
 
 
 if __name__ == "__main__":
