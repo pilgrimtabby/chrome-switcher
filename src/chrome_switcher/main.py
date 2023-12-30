@@ -22,7 +22,7 @@ def main():
     header = common.box("Chrome Switcher")
     if platform.system() == "Windows":
         menu_options = ["Create persistent profile", "Launch temporary browser", "Regenerate "
-                        "shortcut files", "Settings", "Quit"]
+                        "shortcut file", "Settings", "Quit"]
     else:
         menu_options = ["Create persistent profile", "Launch temporary browser", "Regenerate "
                         "shortcut app and file", "Settings", "Quit"]
@@ -50,7 +50,7 @@ def main():
                 if opened:
                     quit_menu = True  # End program if Chrome is opened
 
-            elif (choice == "Regenerate shortcut files"
+            elif (choice == "Regenerate shortcut file"
                   or choice == "Regenerate shortcut app and file"):
                 shortcut_files.main(from_menu=True)
 

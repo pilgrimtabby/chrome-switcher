@@ -31,7 +31,7 @@ import settings
 
 
 def main(from_menu=False):
-    """Copy and prepare the two shortcut files.
+    """Create the shortcut file (Windows) / file and app (macOS).
     
     Args:
         from_menu (bool): Should be True if the function is called from
@@ -57,38 +57,33 @@ def main(from_menu=False):
             return
 
     if platform.system() == "Windows":
-        # Copy both .bat files to profiles_directory and replace 
-        # "chrome_path" with user's actual path to Chrome
-        script_paths = [f"{program_path}/scripts/batch/open_profile.bat",
-                        f"{program_path}/scripts/batch/default_profile.bat"]
-        for script_path in script_paths:
-            with open(script_path, "r", encoding="UTF-8") as file:
-                script = file.read()
+        # Copy the .bat file to profiles_directory and replace 
+        # "chrome_path" with user's actual path to Chrome.
+        script_path = f"{program_path}/scripts/batch/open_profile.bat"
+        with open(script_path, "r", encoding="UTF-8") as file:
+            script = file.read()
 
-            script = script.replace("chrome_path", chrome_path)
+        script = script.replace("chrome_path", chrome_path)
 
-            new_script_path = f"{profiles_directory}/{os.path.basename(script_path)}"
-            with open(new_script_path, "w", encoding="UTF-8") as file:
-                file.write(script)
+        new_script_path = f"{profiles_directory}/{os.path.basename(script_path)}"
+        with open(new_script_path, "w", encoding="UTF-8") as file:
+            file.write(script)
 
         if from_menu:
             common.clear()
             print(f"{header}")
-            input(f"\nGenerated shortcut file:\n{program_path}/scripts/batch/open_profile.bat"
+            input(f"\nGenerated shortcut file:\n{new_script_path}"
                     "\n\n"
                     "To use this shortcut file, drag and drop Chrome profile folders onto "
                     "it.\n\n"
-                    "Also generated a file that will open your default Chrome profile anytime:\n"
-                    f"{profiles_directory}/default_profile.bat\n"
-                    "Double click it to use it.\n\n"
+                    "You can also double-click it to open your default Chrome profile anytime.\n\n"
                     "Press enter to return to the menu: ")
         else:
-            input(f"\nGenerated shortcut file:\n{program_path}/scripts/batch/open_profile.bat"
+            input(f"\nGenerated shortcut file:\n{new_script_path}"
                     "\n\nIf you want to use the Chrome profile you just made later on, drag and "
                     "drop it onto the shortcut file.\n\n"
-                    "Also generated a file that will open your default Chrome profile anytime:\n"
-                    f"{profiles_directory}/default_profile.bat\n"
-                    "Double click it to use it.\n\n"
+                    "You can also double-click the shortcut file at any time to open your default "
+                    "profile.\n\n"
                     "Press enter to continue: ")
 
     # macOS

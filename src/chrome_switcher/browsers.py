@@ -253,9 +253,9 @@ def open_persistent_profile(profile_name):
         if platform.system() == "Windows":
             program_path = os.path.dirname(os.path.realpath(__file__))
             # A call to Windows' cmd.exe. It looks like this:
-            # path/to/chrome.exe chrome://newtab
+            # path/to/chrome.exe chrome://newtab --new-window
             # --user-data-dir="path/to/new/profile".
-            subprocess.Popen([chrome_path, "chrome://newtab",
+            subprocess.Popen([chrome_path, "chrome://newtab", "--new-window",
                               f"--user-data-dir={profiles_directory}/{profile_name}"],
                               stdout=subprocess.DEVNULL, stderr=subprocess.STDOUT)
             # See delete_lnk.py's docstring for details on this call.
@@ -265,8 +265,6 @@ def open_persistent_profile(profile_name):
             # A call to the default macOS shell. It looks like this:
             # path/to/chrome --args --user-data-dir="path/to/new/prof"
             # --new-window chrome://newtab
-            # For some reason, --new-window is necessary on macOS but
-            # not Windows.
             subprocess.Popen([chrome_path, "--args", f"--user-data-dir={profiles_directory}/"
                               f"{profile_name}", "--new-window", "chrome://newtab"],
                               stdout=subprocess.DEVNULL, stderr=subprocess.STDOUT)
