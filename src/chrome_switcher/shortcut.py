@@ -23,7 +23,6 @@ Functions:
 """
 import os
 import platform
-import stat
 import subprocess
 import time
 import browser_path
