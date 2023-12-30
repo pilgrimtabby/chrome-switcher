@@ -27,7 +27,7 @@ import time
 import browser_path
 import common
 import settings
-import shortcut_files
+import shortcut
 
 
 def make_persistent_profile():
@@ -59,13 +59,11 @@ def make_persistent_profile():
         return False
     unique_profile_name = get_unique_name(profile_name)
 
-    # Make profile and shortcut files (if they don't exist already)
+    # Make profile and shortcut file / app if it doesn't exist already
     create_profile(unique_profile_name)
     if (not os.path.exists(f"{profiles_directory}/open_profile.bat")
-        and not os.path.exists(f"{profiles_directory}/open_profile.app") or
-        not os.path.exists(f"{profiles_directory}/default_profile.bat")
-        and not os.path.exists(f"{profiles_directory}/default_profile")):
-        shortcut_files.main()
+        and not os.path.exists(f"{profiles_directory}/open_profile.app")):
+        shortcut.main()
 
     # Option to open the just-made profile in a new Chrome session
     header = common.box("Chrome Switcher | New profile | Open browser")

@@ -13,7 +13,7 @@ if platform.system() != "Windows":
 import advanced_cursor
 import browsers
 import common
-import shortcut_files
+import shortcut
 import settings
 
 
@@ -25,7 +25,7 @@ def main():
                         "shortcut file", "Settings", "Quit"]
     else:
         menu_options = ["Create persistent profile", "Launch temporary browser", "Regenerate "
-                        "shortcut app and file", "Settings", "Quit"]
+                        "shortcut app", "Settings", "Quit"]
 
     quit_menu = False
     while not quit_menu:
@@ -51,8 +51,8 @@ def main():
                     quit_menu = True  # End program if Chrome is opened
 
             elif (choice == "Regenerate shortcut file"
-                  or choice == "Regenerate shortcut app and file"):
-                shortcut_files.main(from_menu=True)
+                  or choice == "Regenerate shortcut app"):
+                shortcut.main(from_menu=True)
 
             elif choice == "Settings":
                 settings.main()
