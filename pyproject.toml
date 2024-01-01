@@ -4,7 +4,7 @@ dependencies = [
   "chime; platform_system != 'Windows'",
   "pywin32; platform_system == 'Windows'",
 ]
-version = "0.0.2"
+version = "0.0.3"
 authors = [
   { name="pilgrim_tabby", email="pilgrimtabby@gmail.com" },
 ]
