@@ -88,29 +88,32 @@ def main(from_menu=False):
 
     # macOS
     else:
-        # Copy open_profile.applescript into profiles_directory,
-        # replace "chrome_path" with the user's Chrome path, and
+        # Copy open_profile.applescript to a temp file with
+        # "chrome_path" replaced with the user's Chrome path. Then
         # compile open_profile.applescript into open_profile.app
         applescript_path = f"{program_path}/scripts/applescript/open_profile.applescript"
+        compiled_app_path = f"{profiles_directory}/open_profile.app"
         with open(applescript_path, "r", encoding="UTF-8") as file:
-            script = file.read()
+            script = file.read().replace("chrome_path", chrome_path)
 
-        script = script.replace("chrome_path", chrome_path)
-
-        new_script_path = f"{profiles_directory}/tmp.applescript"
-        with open(new_script_path, "w", encoding="UTF-8") as file:
+        with open(f"{program_path}/scripts/applescript/tmp.txt", "w", encoding="UTF-8") as file:
             file.write(script)
 
-        compiled_app_path = f"{profiles_directory}/open_profile.app"
-        subprocess.Popen(["osacompile", "-x", "-o", compiled_app_path, new_script_path],
-                            stdout=subprocess.DEVNULL, stderr=subprocess.STDOUT).wait()
+        subprocess.Popen(["osacompile", "-x", "-o", compiled_app_path, file.name],
+                         stdout=subprocess.DEVNULL, stderr=subprocess.STDOUT).wait()
+        os.remove(file.name)
 
         # Inject custom icon into open_profile.app
         subprocess.Popen(["cp", "-f", f"{program_path}/scripts/applescript/droplet.icns",
                             f"{compiled_app_path}/Contents/Resources/droplet.icns"])
 
-        # Delete profiles_dir/open_profile.applescript after compile
-        os.remove(new_script_path)
+        # Overwrite Info.plist so that app is invisible in dock
+        with open(f"{compiled_app_path}/Contents/Info.plist", "r", encoding="UTF-8") as file:
+            contents = file.readlines()
+        contents.insert(4, "\t<key>LSBackgroundOnly</key>\n")
+        contents.insert(5, "\t<true/>\n")
+        with open(f"{compiled_app_path}/Contents/Info.plist", "w", encoding="UTF-8") as file:
+            file.writelines(contents)
 
         if from_menu:
             common.clear()
