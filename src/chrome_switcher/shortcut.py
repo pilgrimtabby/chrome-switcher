@@ -75,13 +75,13 @@ def main(from_menu=False):
             input(f"\nGenerated shortcut file:\n{new_script_path}"
                     "\n\n"
                     "To use this shortcut file, drag and drop Chrome profile folders onto "
-                    "it.\n\n"
+                    "it.\n"
                     "You can also double-click it to open your default Chrome profile anytime.\n\n"
                     "Press enter to return to the menu: ")
         else:
             input(f"\nGenerated shortcut file:\n{new_script_path}"
                     "\n\nIf you want to use the Chrome profile you just made later on, drag and "
-                    "drop it onto the shortcut file.\n\n"
+                    "drop it onto the shortcut file.\n"
                     "You can also double-click the shortcut file at any time to open your default "
                     "Chrome profile.\n\n"
                     "Press enter to continue: ")
@@ -107,7 +107,10 @@ def main(from_menu=False):
         subprocess.Popen(["cp", "-f", f"{program_path}/scripts/applescript/droplet.icns",
                             f"{compiled_app_path}/Contents/Resources/droplet.icns"])
 
-        # Overwrite Info.plist so that app is invisible in dock
+        # Overwrite Info.plist so that app doesn't appear in dock.
+        # Also stops the app from asking permission to access the
+        # directory the profile is in, which is good because it doesn't
+        # need access anyway.
         with open(f"{compiled_app_path}/Contents/Info.plist", "r", encoding="UTF-8") as file:
             contents = file.readlines()
         contents.insert(4, "\t<key>LSBackgroundOnly</key>\n")
@@ -120,13 +123,13 @@ def main(from_menu=False):
             print(f"{header}")
             input(f"\nGenerated shortcut app:\n{compiled_app_path}\n\n"
                     "To use this shortcut app, drag and drop Chrome profile folders onto "
-                    "it.\n\n"
+                    "it.\n"
                     "You can also double-click it to open your default Chrome profile anytime.\n\n"
                     "Press enter to return to the menu: ")
         else:
             input(f"\nGenerated shortcut app:\n{compiled_app_path}\n\n"
                     "If you want to use the Chrome profile you just made later on, drag and "
-                    "drop it onto the shortcut app.\n\n"
+                    "drop it onto the shortcut app.\n"
                     "You can also double-click the shortcut app at any time to open your default "
                     "Chrome profile.\n\n"
                     "Press enter to continue: ")
