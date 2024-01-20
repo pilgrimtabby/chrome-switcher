@@ -20,9 +20,7 @@ A command line interface will be added in the future.
 
 Create and open a new persistent session. 
 
-Choosing this option automatically generates a shortcut file in the same directory as the new session. To use the shortcut file, drag and drop persistent session directories onto it, and that session will open.
-
-Choosing this option also automatically generates a default profile shortcut in the same directory (double click it to open it). If you're running a separate session from the default,  use this to open your default profile without being forced to exit the other session.
+Choosing this option automatically generates a shortcut file in the same directory as the new session. To use the shortcut file, drag and drop persistent session directories onto it, and that session will open. Alternatively, double-click it to open Chrome with your default user directory.
 
 ### New temporary session
 
